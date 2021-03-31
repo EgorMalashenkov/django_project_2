@@ -9,7 +9,7 @@ def vacancies_view(request):
     return render(request, 'vacancies/vacancies.html')
 
 
-def spec_vacancies_view(request, person_id, spec_id):
+def spec_vacancies_view(request, person_id):
     return render(request, 'vacancies/index.html')
 
 
