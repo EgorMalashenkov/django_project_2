@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from vacancies.models import Company
 
 
 def main_view(request):
@@ -6,6 +7,7 @@ def main_view(request):
 
 
 def vacancies_view(request):
+
     return render(request, 'vacancies/vacancies.html')
 
 
