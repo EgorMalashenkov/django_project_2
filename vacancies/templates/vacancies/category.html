@@ -58,12 +58,12 @@
     <section class="mt-5 pt-3">
       <h2 class="h2 font-weight-normal text-center mb-5">Вакансии по рубрикам</h2>
       <div class="row mb-0">
-          {% for specialty in specialty %}
+          {% for category in filtered_category %}
         <div class="col-6 col-md-6 col-lg-3">
           <div class="card pt-4 text-center mb-4">
-            <img class="mx-auto d-block" src="https://place-hold.it/80x80" width="80" height="80" alt="">
+            <img class="mx-auto d-block" src="" width="80" height="80" alt="">
             <div class="card-body">
-              <p class="card-text mb-2">{{ specialty.title }}</p>
+              <p class="card-text mb-2">{{ category.title }}</p>
               <p class="card-text"><a href="#">5 вакансий</a></p>
             </div>
           </div>
@@ -72,29 +72,6 @@
       </div>
     </section>
 
-    <section class="my-5 pt-3">
-      <h2 class="h2 font-weight-normal text-center mb-5">Нам доверяют лучшие компании</h2>
-
-           <div class="row mb-0">
-         {% for company in company %}
-        <div class="col-3">
-
-          <div class="card pt-4 text-center mb-4">
-
-            <a href="#" style="max-width: 150px;" class="mx-auto d-block">
-              <img class="mx-auto d-block mw-100" src="../static/logo2.png" alt="">
-            </a>
-
-            <div class="card-body">
-                <p class="card-text">{{ company.name }}</p>
-              <p class="card-text"><a href="#">5 вакансий</a></p>
-            </div>
-          </div>
-
-        </div>
-         {% endfor %}
-      </div>
-    </section>
   </main>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

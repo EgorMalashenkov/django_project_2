@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="db [2]">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.20">
+<dataSource name="db">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.21">
     <root id="1">
       <ServerVersion>3.34.0</ServerVersion>
     </root>
@@ -1389,7 +1389,8 @@
     <index id="512" parent="171" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
       <ColNames>group_id
 permission_id</ColNames>
-      <ColumnCollations></ColumnCollations>
+      <ColumnCollations>
+</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="513" parent="171" name="auth_group_permissions_group_id_b120cbf9">
@@ -1442,7 +1443,8 @@ permission_id</ColNames>
     <index id="522" parent="172" name="auth_permission_content_type_id_codename_01ab375a_uniq">
       <ColNames>content_type_id
 codename</ColNames>
-      <ColumnCollations></ColumnCollations>
+      <ColumnCollations>
+</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="523" parent="172" name="auth_permission_content_type_id_2f476e4b">
@@ -1548,7 +1550,8 @@ codename</ColNames>
     <index id="543" parent="174" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
       <ColNames>user_id
 group_id</ColNames>
-      <ColumnCollations></ColumnCollations>
+      <ColumnCollations>
+</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="544" parent="174" name="auth_user_groups_user_id_6a12ed8b">
@@ -1596,7 +1599,8 @@ group_id</ColNames>
     <index id="552" parent="175" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
       <ColNames>user_id
 permission_id</ColNames>
-      <ColumnCollations></ColumnCollations>
+      <ColumnCollations>
+</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="553" parent="175" name="auth_user_user_permissions_user_id_a95ead1b">
@@ -1712,7 +1716,8 @@ permission_id</ColNames>
     <index id="575" parent="177" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
-      <ColumnCollations></ColumnCollations>
+      <ColumnCollations>
+</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="576" parent="177">
