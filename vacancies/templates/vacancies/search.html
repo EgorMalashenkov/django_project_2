@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
-{% load crispy_forms_tags %}
+
 <head>
   <meta charset="UTF-8">
-  <title>Вакансия | Джуманджи</title>
+  <title>Вакансии | Джуманджи</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -17,14 +17,15 @@
       </button>
       <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav col-10">
+            {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/mycompany/vacancies">Вакансии</a>
           </li>
-
+            {% endif %}
         </ul>
         <ul class="navbar-nav col-2 justify-content-end">
           <li class="nav-item active">
-            {% if user.is_authenticated %}
+             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="nav-link font-weight-900" >Выйти</a>
                   {% else %}
                   <a href="{% url 'login' %}" class="nav-link font-weight-" >Войти</a>
@@ -34,34 +35,42 @@
       </div>
     </nav>
   </header>
+  <main class="container mt-3">
+    <section>
 
-  <main class="container mt-3 pb-5">
-    <div class="row mt-5">
-      <div class="col-12 col-lg-2">
-        <div class="pl-3 mb-5">
-          <p><a href="#">Назад</a></p>
+        <h1 class="h1 text-center mt-5 mb-4">Поиск вакансий</h1>
+
+        <div class="row">
+            <div class="col-md-7 col-lg-5 col-xl-4 col-sm-8 mx-auto">
+
+            <form class="form-inline sm-form mr-auto mb-4" enctype="multipart/form-data" action={% url 'search' %}>
+                <input class="form-control mr-sm-2" type="text" value="" placeholder="Например: Backend"  aria-label="Search" name="main_search">
+                <button class="btn btn-primary  my-0" type="submit">Найти вакансии</button>
+            </form>
+
+            </div>
         </div>
-      </div>
-      <div class="col-12 col-lg-8">
-        <section class="pl-3">
-          <a href="#"><img src="/media/company_images/{{ vacancy.company.logo }}" width="130" height="80" alt=""></a>
-          <div class="d-flex align-items-baseline align-content-baseline">
-            <h1 class="h2 mt-4 font-weight-bold" >{{ vacancy.title }}</h1>
-            <p class="m-0 pl-3">{{ vacancy.salary_min }}р – {{ vacancy.salary_max }}р</p>
+      <p class="text-center pt-1">Найдено 8 вакансий</p>
+        {% for vacancy in vacancies %}
+      <div class="row mt-2">
+        <div class="col-12 col-lg-8 offset-lg-2 m-auto">
+          <div class="card mb-4">
+            <div class="card-body px-4">
+              <div class="row">
+                <div class="col-12 col-md-8 col-lg-9">
+                  <h2 class="h2 pb-2"><a class="card-text mb-2" href="/vacancies/{{ vacancy.id }}">{{ vacancy.title }}</a></h2>
+                  <p class="mb-2">{{ vacancy.skills }}</p>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 d-flex align-items-end">
+                  <a href="#"><img src="/media/company_images/{{ vacancy.company.logo }}" width="130" height="80" alt=""></a>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="mt-2">{{ vacancy.skills }}</p>
-          <p class="text-muted mb-4">Primal Assault (15-30 человек), Рязань или удаленно</p>
-          <div style="line-height: 1.8;">
-            {{ vacancy.description | safe}}
           </div>
-          <form  action="" method="post">
-              {% csrf_token %}
-                  {{ form|crispy }}
-                  <input type="submit">
-              </form>
-        </section>
       </div>
-    </div>
+      {% endfor %}
+    </section>
   </main>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

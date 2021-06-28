@@ -11,21 +11,23 @@
 <body>
   <header class="container mt-3">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand mr-4 font-weight-bold" href="#">Джуманджи</a>
+      <a class="navbar-brand mr-4 font-weight-bold" href="/">Джуманджи</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav col-10">
           <li class="nav-item">
-            <a class="nav-link" href="#">Вакансии</a>
+            <a class="nav-link" href="/mycompany/vacancies">Вакансии</a>
           </li>
 
         </ul>
         <ul class="navbar-nav col-2 justify-content-end">
-          <li class="nav-item active">
-            <a href="#" class="nav-link font-weight-bold">Вход</a>
-          </li>
+          {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="nav-link font-weight-900" >Выйти</a>
+                  {% else %}
+                  <a href="{% url 'login' %}" class="nav-link font-weight-" >Войти</a>
+              {% endif %}
         </ul>
       </div>
     </nav>
@@ -37,10 +39,10 @@
     </div>
     <section>
       <div class="text-center">
-        <img src="https://place-hold.it/130x80" width="130" height="80" alt="">
+        <img src="/media/company_images/{{ company.logo }}" width="130" height="80" alt="">
       </div>
       <h1 class="h1 text-center mx-auto mt-0 pt-1" style="font-size: 70px;"><strong>{{ company_from_id }}</strong></h1>
-      <p class="text-center pt-1">Компания, Екатеринбург, 5 вакансий</p>
+      <p class="text-center pt-1">Компания, {{ company.location }} , {{ company.vacancies.count }} вакансий</p>
       <div class="row mt-5">
         <div class="col-12 col-lg-8 offset-lg-2 m-auto">
             {% for vacancy in company_vacancies %}
@@ -53,7 +55,7 @@
                   <p class="text-muted pt-1">{{ vacancy.published_at }}</p>
                 </div>
                 <div class="col-12 col-md-4 col-lg-3 d-flex align-items-end">
-                  <img src="https://place-hold.it/130x80" width="130" height="80" alt="">
+                  <img src="/media/company_images/{{ company.logo }}" width="130" height="80" alt="">
                 </div>
               </div>
             </div>

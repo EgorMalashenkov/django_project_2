@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Создать карточку компании | Джуманджи</title>
+  <title>Вакансии компании | Джуманджи</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
@@ -31,7 +31,7 @@
           <li class="nav-item active">
             <div class="btn-group">
               <button type="button" class="btn dropdown-toggle font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ user.first_name }}
+                {{ user.username }}
               </button>
               <div class="dropdown-menu dropdown-menu-right mt-3">
                 <a href="#" class="dropdown-item py-2">Профиль</a>
@@ -47,13 +47,47 @@
   </header>
 
   <main class="container mt-3 pb-5">
-    <section class="col-12 col-lg-6 offset-lg-3 mt-5 card">
-      <div class="card-body px-3 pb-4">
-        <h1 class="h4 pt-2">Моя компания</h1>
-        <p class="mt-2">Пока мы думаем, что вы – частное лицо. Хотите создать карточку компании, разместить информаию и вакансии?</p>
-        <a href="/" class="btn btn-info mb-2">Создать карточку компании</a>
+    <div class="row mt-5">
+      <div class="col-12 col-lg-4">
+        <aside class="pt-3 pb-4 px-4 mb-5 card">
+          <h1 class="h4 pt-2 pb-2">Моя компания</h1>
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link" href="/companies/{{ company.company_id }}">1. Информация о&nbsp;компании</a>
+            <a class="nav-link active" href="#">2. Вакансии</a>
+          </div>
+        </aside>
       </div>
-    </section>
+      <div class="col-12 col-lg-8">
+        <div class="card">
+          <div class="card-body px-4 pb-4">
+            <section class="tab-pane fade show active">
+              <h2 class="h4 pt-2 pb-3">Вакансии</h2>
+              <!-- vacancy state 1 -->
+                {% for vacancy in vacancies %}
+              <div class="card mt-3">
+                <div class="card-body px-4">
+                  <div class="row align-items-center">
+                    <div class="col-6 col-lg-8">
+                      <a href="#" class="mb-1">{{ vacancy.title }}</a>
+                      <p class="mb-1">
+                        <span class="mr-4">{{ vacancy.salary_min }}</span><a href="#" class="text-info">{{ vacancy.applications.count }} отклика</a>
+                      </p>
+                    </div>
+                    <div class="col-6 col-lg-4 text-right">
+                      <a href="/vacancy/edit/{{ vacancy.id }}" class="btn btn-outline-info">Изменить</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                {% endfor %}
+              <!-- END vacancy state 1 -->
+              <!-- vacancy state 2 -->
+              <!-- END vacancy state 2 -->
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
