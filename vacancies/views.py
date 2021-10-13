@@ -12,7 +12,7 @@ def main_view(request):
     return render(request, 'vacancies/index.html', context={
         'specialty': Specialty.objects.all(),
         'companies': Company.objects.all()
-        })
+    })
 
 
 def search_view(request):
@@ -20,18 +20,16 @@ def search_view(request):
     vacancy_filter_id = specialty_filter[0].id
     return render(request, 'vacancies/search.html', context={
         'vacancies': Vacancy.objects.filter(specialty_id=vacancy_filter_id),
-        })
+    })
 
 
 def vacancies_view(request):
-
     return render(request, 'vacancies/vacancies.html', context={
         "vacancies": Vacancy.objects.all()
     })
 
 
 def cat_vacancies_view(request, spec_id):
-
     return render(request, 'vacancies/category.html', context={
         "filtered_category": Vacancy.objects.filter(specialty_id=spec_id)
 
@@ -39,12 +37,12 @@ def cat_vacancies_view(request, spec_id):
 
 
 def company_view(request, company_id):
-
     return render(request, 'vacancies/company.html', context={
         "company_from_id": Company.objects.filter(id=company_id).first().name,
         "company_vacancies": Vacancy.objects.filter(company__id=company_id),
         "company": Company.objects.get(id=company_id),
     })
+
 
 #
 # @login_required
